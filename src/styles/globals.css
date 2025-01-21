@@ -46,4 +46,9 @@
   .sticky-pos {
     @apply sticky left-0 top-0;
   }
+
+  /* Auth */
+  .auth-layout {
+    @apply w-1/2 sticky-pos flex-center h-screen bg-bank-gradient text-[50px] font-ibm-plex-serif font-bold text-white max-lg:hidden;
+  }
 }

@@ -1,7 +1,7 @@
-export default async function Home () {
+import LinkButton from "@/components/LinkButton";
+
+export default function Home() {
     return (
-        <div>
-            <h1>Home</h1>
-        </div>
-    )
+        <LinkButton />
+    );
 }
