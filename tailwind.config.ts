@@ -70,7 +70,7 @@ const config = {
 				},
 			},
 			backgroundImage: {
-				"bank-gradient": "linear-gradient(90deg, #000000 0%, #000000 100%)",
+				"bank-gradient": "linear-gradient(90deg, #0179FE 0%, #4893FF 100%)",
 				"bank-sub-gradient": "linear-gradient(90deg, #D0D5DD 0%, #D0D5DD 100%)",
 			},
 			boxShadow: {

@@ -51,3 +51,13 @@ declare interface EmailHeader {
     name: string;
     value: string;
 }
+
+declare interface Account {
+    id: string;
+    email: string;
+    userId: string;
+    token: string;
+    provider: string;
+    name: string;
+    nextDeltaToken?: string;
+}

@@ -35,7 +35,7 @@ const getUpdatedEmails = async (token: string, deltaToken: string, pageToken: st
 
 export const emailSync = async (token: string) => {
     try {
-        const daysWithin = 4;
+        const daysWithin = 2;
         let syncResponse = await startSync(token, daysWithin);
         while (!syncResponse.ready) {
             await new Promise(resolve => setTimeout(resolve, 1000));

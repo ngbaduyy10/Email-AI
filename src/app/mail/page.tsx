@@ -1,7 +1,11 @@
-const Mail = () => {
+import Mail from '@/app/mail/Mail'
+
+const MailPage = () => {
     return (
-        <div>Mail</div>
+        <div className="h-screen w-full">
+            <Mail />
+        </div>
     )
 }
 
-export default Mail;
+export default MailPage;

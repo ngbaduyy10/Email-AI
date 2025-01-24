@@ -51,4 +51,9 @@
   .auth-layout {
     @apply w-1/2 sticky-pos flex-center h-screen bg-bank-gradient text-[50px] font-ibm-plex-serif font-bold text-white max-lg:hidden;
   }
+
+  /* Sidebar */
+  .sidebar-item {
+    @apply flex items-center justify-between cursor-pointer p-3 rounded-xl;
+  }
 }
