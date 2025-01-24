@@ -16,7 +16,7 @@ const Mail = () => {
             >
                 <div className="flex flex-col h-full p-3 border-r">
                     <AccountSwitcher />
-                    <Separator className="my-4" />
+                    <Separator className="my-4 border" />
                     <Sidebar />
                 </div>
             </ResizablePanel>

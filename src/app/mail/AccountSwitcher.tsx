@@ -52,13 +52,13 @@ const AccountSwitcher = () => {
                     <SelectItem
                         value={account.id}
                         key={account.id}
-                        className="cursor-pointer border-b pb-3"
+                        className="switcher-item"
                     >
                         {account.email}
                     </SelectItem>
                 ))}
 
-                <div onClick={handleAddAccount} className="flex items-center gap-2 cursor-pointer px-1 py-2">
+                <div onClick={handleAddAccount} className="switcher-add">
                     <Plus size={18} />
                     <p className="text-[15px] font-medium">
                         Add account

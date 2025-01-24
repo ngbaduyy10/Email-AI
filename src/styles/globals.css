@@ -52,6 +52,15 @@
     @apply w-1/2 sticky-pos flex-center h-screen bg-bank-gradient text-[50px] font-ibm-plex-serif font-bold text-white max-lg:hidden;
   }
 
+  /* Account Switcher */
+  .switcher-item {
+    @apply cursor-pointer border-b py-3 rounded-lg hover:bg-gray-200;
+  }
+
+  .switcher-add {
+    @apply flex items-center gap-2 cursor-pointer rounded-lg px-1 py-2 hover:bg-gray-200;
+  }
+
   /* Sidebar */
   .sidebar-item {
     @apply flex items-center justify-between cursor-pointer p-3 rounded-xl;

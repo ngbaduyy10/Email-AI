@@ -28,7 +28,7 @@ const Sidebar = () => {
     }, [accountId]);
 
     return (
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-1">
             {sidebarLinks.map((link) => {
                 const num = link.title === "Inbox" ? inboxNum : link.title === "Draft" ? draftNum : sentNum;
                 const active = link.title.toLowerCase() === status;
@@ -36,7 +36,7 @@ const Sidebar = () => {
                 return (
                     <div
                         key={link.title}
-                        className={`sidebar-item ${active && "bg-bank-gradient"}`}
+                        className={`sidebar-item ${active ? "bg-bank-gradient" : "hover:bg-gray-200"}`}
                         onClick={() => setStatus(link.title.toLowerCase())}
                     >
                         <div className={`flex items-center gap-3 ${active && "text-white"}`}>
