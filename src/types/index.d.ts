@@ -61,3 +61,16 @@ declare interface Account {
     name: string;
     nextDeltaToken?: string;
 }
+
+declare interface Thread {
+    accountId: string,
+    id: string,
+    subject: string,
+    lastMessageDate: Date,
+    participantIds: string[],
+    done: boolean,
+    inboxStatus: boolean,
+    draftStatus: boolean,
+    sentStatus: boolean
+    emails: EmailMessage[]
+}

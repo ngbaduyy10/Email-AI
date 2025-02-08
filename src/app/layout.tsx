@@ -3,6 +3,7 @@ import { Inter, IBM_Plex_Serif } from "next/font/google";
 import "@/styles/globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import React from "react";
+import {Toaster} from "sonner";
 
 const inter = Inter({
     subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <ClerkProvider>
             <html lang="en">
                 <body className={`${inter.variable} ${ibmPlexSerif.variable} antialiased`}>
+                    <Toaster position="top-right" />
                     {children}
                 </body>
             </html>

@@ -1,4 +1,4 @@
-import {NextRequest} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import {db} from "@/server/db";
 
 export const GET = async (req: NextRequest) => {
@@ -24,5 +24,17 @@ export const GET = async (req: NextRequest) => {
             accountId: accountId!,
             ...filter,
         },
+        orderBy: {
+            lastMessageDate: "desc",
+        },
+        include: {
+            emails: {
+                include: {
+                    from: true,
+                }
+            },
+        },
     });
+
+    return NextResponse.json({ data: threads }, { status: 200 });
 }

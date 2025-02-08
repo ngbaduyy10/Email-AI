@@ -65,4 +65,14 @@
   .sidebar-item {
     @apply flex items-center justify-between cursor-pointer p-3 rounded-xl;
   }
+
+  /*  Email Display */
+  .email-display {
+    @apply border rounded-md p-4 cursor-pointer transition-all hover:translate-x-2
+  }
+
+  /* Thread List */
+  .thread-item {
+    @apply flex flex-col items-start gap-3 rounded-lg border p-3 cursor-pointer;
+  }
 }
