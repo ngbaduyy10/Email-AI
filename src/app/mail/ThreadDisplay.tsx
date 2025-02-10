@@ -1,4 +1,4 @@
-import {Archive, ArchiveX, Clock, Trash2, Reply, ReplyAll, Forward} from 'lucide-react';
+import {Archive, ArchiveX, Clock, Trash2, Reply, ReplyAll, Forward, LoaderCircle} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useAtom } from 'jotai';
@@ -14,13 +14,16 @@ import EmailDisplay from "@/app/mail/EmailDisplay";
 const ThreadDisplay = () => {
     const [threadId] = useAtom(threadIdAtom);
     const [thread, setThread] = useState<Thread | null>(null);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchThread = async () => {
+            setLoading(true);
             const response = await axios.get(`/api/email/${threadId}`);
             if (response.status === 200) {
                 setThread(response.data.data);
             }
+            setLoading(false);
         }
 
         if (threadId) {
@@ -34,7 +37,7 @@ const ThreadDisplay = () => {
                 <div className="flex items-center gap-1">
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" disabled={!threadId}>
+                            <Button variant="ghost" size="icon" disabled={!threadId || loading}>
                                 <Archive />
                                 <span className="sr-only">Archive</span>
                             </Button>
@@ -43,7 +46,7 @@ const ThreadDisplay = () => {
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" disabled={!threadId}>
+                            <Button variant="ghost" size="icon" disabled={!threadId || loading}>
                                 <ArchiveX />
                                 <span className="sr-only">Move to junk</span>
                             </Button>
@@ -52,7 +55,7 @@ const ThreadDisplay = () => {
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" disabled={!threadId}>
+                            <Button variant="ghost" size="icon" disabled={!threadId || loading}>
                                 <Trash2 />
                                 <span className="sr-only">Move to trash</span>
                             </Button>
@@ -64,7 +67,7 @@ const ThreadDisplay = () => {
 
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" disabled={!threadId}>
+                            <Button variant="ghost" size="icon" disabled={!threadId || loading}>
                                 <Clock />
                                 <span className="sr-only">Snooze</span>
                             </Button>
@@ -76,7 +79,7 @@ const ThreadDisplay = () => {
                 <div className="flex items-center gap-1">
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" disabled={!threadId}>
+                            <Button variant="ghost" size="icon" disabled={!threadId || loading}>
                                 <Reply />
                                 <span className="sr-only">Reply</span>
                             </Button>
@@ -85,7 +88,7 @@ const ThreadDisplay = () => {
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" disabled={!threadId}>
+                            <Button variant="ghost" size="icon" disabled={!threadId || loading}>
                                 <ReplyAll />
                                 <span className="sr-only">Reply all</span>
                             </Button>
@@ -94,7 +97,7 @@ const ThreadDisplay = () => {
                     </Tooltip>
                     <Tooltip>
                         <TooltipTrigger asChild>
-                            <Button variant="ghost" size="icon" disabled={!threadId}>
+                            <Button variant="ghost" size="icon" disabled={!threadId || loading}>
                                 <Forward />
                                 <span className="sr-only">Forward</span>
                             </Button>
@@ -106,42 +109,48 @@ const ThreadDisplay = () => {
 
             <Separator className="my-4 border" />
 
-            {thread ? (
-                <div className="flex flex-col flex-1 overflow-scroll">
-                    <div className="flex items-start justify-between">
-                        <div className="flex items-start gap-4 text-sm">
-                            <Avatar>
-                                <AvatarFallback>
-                                    {thread.emails[0]?.from?.name?.charAt(0)}
-                                </AvatarFallback>
-                            </Avatar>
-                            <div className="grid gap-1">
-                                <div className="font-semibold">{thread.emails[0]?.from?.name}</div>
-                                <div className="text-xs line-clamp-1">{thread.emails[0]?.subject}</div>
-                                <div className="text-xs line-clamp-1">
-                                    <span className="font-medium">Reply-To:</span> {thread.emails[0]?.from?.address}
-                                </div>
-                            </div>
-                        </div>
-                        {thread.emails[0]?.sentAt && (
-                            <div className="ml-auto text-xs text-muted-foreground">
-                                {format(new Date(thread.emails[0].sentAt), "PPpp")}
-                            </div>
-                        )}
-                    </div>
-
-                    <Separator className="my-2 border" />
-
-                    <div className="p-6 overflow-scroll flex flex-col gap-4">
-                        {thread.emails.map(email => {
-                            return <EmailDisplay key={email.id} email={email} />
-                        })}
-                    </div>
+            {loading ? (
+                <div className="flex-center h-full">
+                    <LoaderCircle size={40} className="animate-spin"/>
                 </div>
             ) : (
-                <div className="p-8 text-center">
-                    No email selected
-                </div>
+                <>
+                    {thread ? (
+                        <div className="flex flex-col flex-1 overflow-scroll">
+                            <div className="flex items-start justify-between">
+                                <div className="flex items-start gap-4 text-sm">
+                                    <Avatar>
+                                        <AvatarFallback className="border text-white font-bold bg-bank-gradient">
+                                            {thread.emails[0]?.from?.name?.charAt(0)}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                    <div className="grid gap-1">
+                                        <div className="font-semibold">{thread.emails[0]?.from?.name}</div>
+                                        <div className="text-xs line-clamp-1">
+                                            {thread.emails[0]?.from?.address}
+                                        </div>
+                                        <div className="text-md line-clamp-1">{thread.emails[0]?.subject}</div>
+                                    </div>
+                                </div>
+                                {thread.emails[0]?.sentAt && (
+                                    <div className="text-xs w-1/4">
+                                        {format(new Date(thread.emails[0].sentAt), "PP p")}
+                                    </div>
+                                )}
+                            </div>
+
+                            <div className="p-6 flex flex-col gap-4">
+                                {thread.emails.map(email => {
+                                    return <EmailDisplay key={email.id} email={email} />
+                                })}
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="p-8 text-center">
+                            No email selected
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );

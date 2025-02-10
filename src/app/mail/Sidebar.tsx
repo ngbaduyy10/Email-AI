@@ -44,7 +44,7 @@ const Sidebar = () => {
                             <span>{link.title}</span>
                         </div>
 
-                        <div className={`text-sm ${active && "text-white"}`}>
+                        <div className={`text-xs ${active && "text-white"}`}>
                             {num}
                         </div>
                     </div>

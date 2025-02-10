@@ -14,9 +14,9 @@ const Mail = () => {
         <TooltipProvider delayDuration={0}>
             <ResizablePanelGroup direction="horizontal" className="h-full">
                 <ResizablePanel
-                    defaultSize={20}
+                    defaultSize={17}
                     minSize={15}
-                    maxSize={20}
+                    maxSize={17}
                 >
                     <div className="flex flex-col gap-8 h-full p-3 border-r">
                         <AccountSwitcher />
@@ -27,12 +27,12 @@ const Mail = () => {
                 <ResizableHandle withHandle />
 
                 <ResizablePanel
-                    defaultSize={40}
+                    defaultSize={35}
                     minSize={30}
                 >
                     <div className="flex flex-col h-full p-3 border-r">
                         <div className="flex items-center justify-between">
-                            <h1 className="text-3xl font-bold">Inbox</h1>
+                            <h1 className="ml-1 text-3xl font-bold">Inbox</h1>
                         </div>
                         <Separator className="my-4 border" />
                         <ThreadList />
@@ -42,7 +42,7 @@ const Mail = () => {
                 <ResizableHandle withHandle />
 
                 <ResizablePanel
-                    defaultSize={40}
+                    defaultSize={48}
                     minSize={30}
                 >
                     <div className="flex flex-col h-full p-3">

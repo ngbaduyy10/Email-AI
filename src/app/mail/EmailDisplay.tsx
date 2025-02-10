@@ -23,7 +23,7 @@ const EmailDisplay = ({ email } : { email: EmailMessage }) => {
     }, [email, accountId]);
 
     return (
-        <div className={`email-display ${isMe && "border-l-gray-900 border-l-4"}`}>
+        <div className={`rounded-lg p-4 cursor-pointer ${isMe && "border-l-gray-900 border-l-4"}`}>
             <div className="flex items-center justify-between gap-2 mb-2">
                 <div className='flex items-center gap-2'>
                     {!isMe &&
@@ -39,12 +39,12 @@ const EmailDisplay = ({ email } : { email: EmailMessage }) => {
                         {isMe ? 'Me' : email.from.address}
                     </span>
                 </div>
-                <p className='text-xs text-muted-foreground'>
+                <p className='text-xs'>
                     {formatDistanceToNow(email.sentAt ?? new Date(), { addSuffix: true })}
                 </p>
             </div>
 
-            <Letter className='bg-white rounded-md text-black' html={email?.body ?? ""} />
+            <Letter className='letter text-black' html={email?.body ?? ""} />
         </div>
     );
 }

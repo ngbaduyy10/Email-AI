@@ -1,4 +1,4 @@
-import Mail from '@/app/mail/Mail'
+import Mail from './Mail'
 
 const MailPage = () => {
     return (

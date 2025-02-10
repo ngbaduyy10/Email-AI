@@ -57,7 +57,7 @@ const ThreadList = () => {
                                 return (
                                     <div
                                         key={thread.id}
-                                        className={`thread-item ${active ? "bg-bank-gradient" : "hover:bg-gray-200"}`}
+                                        className={`thread-item ${active ? "bg-bank-gradient text-white" : "hover:bg-gray-200"}`}
                                         onClick={() => setThreadId(thread.id)}
                                     >
                                         <div className="flex flex-col w-full gap-1">
